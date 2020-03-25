@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const {Model} = sequelize.Seqeulize
-
+  const {Model} = sequelize.Sequelize
   class Customers extends Model {}
 
   Customers.init({

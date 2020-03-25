@@ -18,7 +18,7 @@ class Controller{
         .then((result)=>{
             if(result){
                 req.session.isLogin = true
-                res.redirect('/admin/home')
+                res.redirect('/admin')
             }else{
                 res.send('password/username salah')
             }
@@ -59,7 +59,7 @@ class Controller{
         
         Admins.create(data)
         .then((result)=>{
-            res.redirect('/admin/home')
+            res.redirect('/admin')
         })
         .catch((err)=>{
             res.send(err)
@@ -95,7 +95,7 @@ class Controller{
             }
         })
         .then((result)=>{
-            res.redirect('/admin/home')
+            res.redirect('/admin')
         })
         .catch((err)=>{
             res.send(err)

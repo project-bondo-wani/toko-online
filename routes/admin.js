@@ -11,8 +11,8 @@ router.get('/', (req, res, next)=>{
     }else{
         res.redirect('/admin/login')
     }
-})
-router.get('/home', controller.home)
+}, controller.home)
+// router.get('/home', controller.home)
 router.get('/register', controller.createForm)
 router.post('/register', controller.create)
 router.get('/login', controller.loginForm)

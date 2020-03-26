@@ -28,6 +28,11 @@ class Controller{
         })
     }
 
+    static logout(req, res){
+        req.session.isLogin = false
+        res.redirect('/admin')
+    }
+
     static home(req, res){
         Admins.findAll()
         .then((result)=>{

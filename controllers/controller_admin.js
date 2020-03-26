@@ -67,7 +67,7 @@ class Controller{
 
     static create(req, res){
         const {username, first_name, last_name, password} = req.body
-        console.log(username)
+        // console.log(username)
         Admins.findAll({
             where: {
                 username
@@ -79,6 +79,7 @@ class Controller{
             }
             else{
                 bcrypt.genSalt(saltRounds, function(err, salt) {
+                    // console.log(salt)
                     bcrypt.hash(password, salt, function(err, hash) {
                         // Store hash in your password DB.
                         const data = {

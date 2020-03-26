@@ -3,6 +3,7 @@ const {Products, ProductCategories} =  require('../models')
 class Controller{
 
     static getAll(req, res){
+        
         Products.findAll({
             order:[
                 ['id', 'ASC']
@@ -10,7 +11,6 @@ class Controller{
             include:[ProductCategories]
         })
         .then((result)=>{
-            // res.send(result)
             res.render('admin/product', {result})
         })
         .catch((err)=>{
@@ -74,6 +74,7 @@ class Controller{
         })
     }
     static getAllCustomer(req, res){
+        const {user} = req.session
         Products.findAll({
             order:[
                 ['ProductCategoryId', 'ASC']
@@ -82,7 +83,7 @@ class Controller{
         })
         .then((result)=>{
             // res.send(result)
-            res.render('admin/product/customerShow', {result})
+            res.render('customer/product/customerShow', {result, user})
         })
         .catch((err)=>{
             res.send(err)

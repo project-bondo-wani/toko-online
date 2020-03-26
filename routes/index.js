@@ -9,6 +9,8 @@ router.get('/customer/login', customer.login)
 router.post('/customer/login', customer.loginCheck)
 router.use('/customer', (req, res, next) => {
     const {isLogin} = req.session
+    const {user} = req.session
+    console.log(req.session)
     if(isLogin){
         next()
     } else {

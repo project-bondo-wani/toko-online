@@ -4,7 +4,16 @@ module.exports = (sequelize, DataTypes) => {
   class ProductCategories extends Model {}
 
   ProductCategories.init({
-    category_name: DataTypes.STRING
+    category_name:{
+      type:DataTypes.STRING,
+      validate:{
+        NotEmpty(){
+          if (this.category_name == "") {
+            throw new Error('nama kategori tidak boleh kosong')
+          }
+        }
+      } 
+    } 
   }, {
     sequelize
   })

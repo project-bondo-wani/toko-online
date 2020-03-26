@@ -74,10 +74,5 @@ class Controller{
         })
     }
 }
-// <% for(let i in result) { %>
-//     <tr>
-//         <td><%= +i+1 %></td>
-//     </tr>
-// <% } %>
 
 module.exports = Controller

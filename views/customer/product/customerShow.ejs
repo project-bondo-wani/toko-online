@@ -1,44 +1,55 @@
 <html>
+
     <head>
         <title>List Product</title>
+        <link rel="stylesheet" type="text/css" href="/style/style.css">
     </head>
+
     <body>
-        <div>
-            <!-- Product --> 
-            <h1>LIST PRODUCT</h1>
-            <table border="1px" style="width: auto;">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                    <th>Quantity Want To Buy</th>
-                </tr>
-                <% for(let i in result) { %>
-                    <tr>
-                        <td><%= +i+1 %></td>
-                        <td><%= result[i].name %></td>
-                        <td><%= result[i].price %></td>
-                        <td><%= result[i].stock %></td>
-                        <td><a href="/image/<%= result[i].image %>"><%= result[i].image %></a></td>
-                        <td><%= result[i].ProductCategory.category_name %></td>
-                        <td><form action="">
-                                <input type="hidden" id="id" name="id" value="<%= result[i].id%>">
-                                <input type="number" id="quantity" name="quantity" min="1" max="<%= result[i].stock%>">
-                                <input type="submit" value="Add To Cart">
-                            </form>
-                        </td>
-                    </tr>
-                <% } %>
-            </table>
+        <div class="user">
             <!-- User -->
             <div style="width: 50%;">
-                <div class="card">
-                    <%= user.email %>
+                <%= user.email %>
+            </div>
+            <a href="/customer/order/<%= user.id %>/cart">Cart</a>
+            <!-- Product -->
+
+        </div>
+        <center>
+            <h1>LIST PRODUCT</h1>
+        </center>
+        <section class="product">
+            <% for(let i in result) { %>
+            <div class="card">
+                <img src="/image/<%= result[i].image %>" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h3><b><%= result[i].name %></b></h3>
+                    <div class="desc">
+                        <div style="">
+                            <label>Price</label>
+                            <p><%= result[i].price %></p>
+                        </div>
+
+                        <div style="">
+                            <label>Stock</label>
+                            <p><%= result[i].stock %></p>
+                        </div>
+                    </div>
+                    <center>
+                        <form action="/customer/order/add" method="POST">
+                            <input type="hidden" id="customer" name="CustomerId" value="<%= user.id %>">
+                            <input type="hidden" id="stock" name="stock" value="<%= result[i].stock %>">
+                            <input type="hidden" id="delivery_address" name="delivery_address" value="<%= user.address %>">
+                            <input type="hidden" id="Product" name="ProductId" value="<%= result[i].id%>">
+                            <input type="number" id="quantity" name="quantity" min="1" max="<%= result[i].stock%>">
+                            <input type="submit" value="Add To Cart">
+                        </form>
+                    </center>
                 </div>
             </div>
-        </div>
+            <% } %>
+            </div>
+        </section>
     </body>
+
 </html>

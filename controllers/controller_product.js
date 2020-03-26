@@ -44,7 +44,7 @@ class Controller{
         }
         Products.create(data)
         .then((result)=>{
-            res.redirect('/admin/product')
+            res.redirect('/admin/product/productData')
         })
         .catch((err)=>{
             res.send(err)
@@ -67,7 +67,7 @@ class Controller{
             }
         })
         .then((result)=>{
-            res.redirect('/admin/product')
+            res.redirect('/admin/product/productData')
         })
         .catch((err)=>{
             res.send(err)

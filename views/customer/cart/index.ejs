@@ -1,0 +1,42 @@
+<html>
+
+    <head>
+        <title>List Product</title>
+        <link rel="stylesheet" type="text/css" href="/style/style.css">
+    </head>
+
+    <body>
+        <div class="user">
+            <!-- User -->
+            <div style="width: 50%;">
+                <%= user.email %>
+            </div>
+            <!-- Product -->
+
+        </div>
+        <center>
+            <h1>LIST ORDER</h1>
+        </center>
+        <section class="product">
+            <% for(let i in result) { %>
+            <div class="card">
+                <img src="/image/<%= result[i].Product.image %>" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h3><b><%= result[i].Product.name %></b></h3>
+                    <div class="desc">
+                        <div style="">
+                            <label>Price Total</label>
+                            <p><%= result[i].Product.price * result[i].quantity %></p>
+                        </div>
+                        <div style="">
+                            <label>Quantity</label>
+                            <p><%= result[i].quantity %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            </div>
+        </section>
+    </body>
+</html>

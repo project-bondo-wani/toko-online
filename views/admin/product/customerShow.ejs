@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>List Product</title>
+    </head>
+    <body>
+        <h1>LIST PRODUCT</h1>
+        <table border="1px">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Quantity Want To Buy</th>
+            </tr>
+            <% for(let i in result) { %>
+                <tr>
+                    <td><%= +i+1 %></td>
+                    <td><%= result[i].name %></td>
+                    <td><%= result[i].price %></td>
+                    <td><%= result[i].stock %></td>
+                    <td><a href="/image/<%= result[i].image %>"><%= result[i].image %></a></td>
+                    <td><%= result[i].ProductCategory.category_name %></td>
+                    <td><form action="" method="POST">
+                        <input type="hidden" id="id" name="id" value="<%= result[i].id%>">
+                        <input type="hidden" id="name" name="name" value="<%= result[i].name%>">
+                        <input type="number" id="quantity" name="quantity" min="1" max="<%= result[i].stock%>">
+                        <input type="submit" value="Add To Cart">
+                      </form></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

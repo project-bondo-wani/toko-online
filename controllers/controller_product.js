@@ -77,9 +77,7 @@ class Controller{
 
         const paramsId = req.params.id
         console.log(paramsId)
-
         const {user} = req.session
-
         Products.findAll({
             order:[
                 ['ProductCategoryId', 'ASC']
@@ -88,9 +86,6 @@ class Controller{
         })
         .then((result)=>{
             // res.send(result)
-
-            res.render('admin/product/customerShow', {result, paramsId})
-
             res.render('customer/product/customerShow', {result, user})
 
         })

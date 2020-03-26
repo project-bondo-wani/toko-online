@@ -35,11 +35,8 @@ class CustomerController {
             if(result){
                 // console.log(result)
                 req.session.isLogin = true
-
-                res.redirect('/customer/product/'+result.id+'/customer')
-
                 req.session.user = result
-                res.redirect('/customer/product/customer')
+                res.redirect('/customer/product/')
 
             }else{
                 req.app.locals.message = 'password/username salah'

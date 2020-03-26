@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <a href="/admin/product/create">Add</a>
+        <table border="1px">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+            <% for(let i in result) { %>
+                <tr>
+                    <td><%= +i+1 %></td>
+                    <td><%= result[i].name %></td>
+                    <td><%= result[i].price %></td>
+                    <td><%= result[i].stock %></td>
+                    <td><a href="/image/<%= result[i].image %>"><%= result[i].image %></a></td>
+                    <td><%= result[i].ProductCategory.category_name %></td>
+                    <td><a href="/admin/product/delete/<%= result[i].id %>">Delete</a></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

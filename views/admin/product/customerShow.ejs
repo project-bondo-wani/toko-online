@@ -22,8 +22,9 @@
                     <td><%= result[i].stock %></td>
                     <td><a href="/image/<%= result[i].image %>"><%= result[i].image %></a></td>
                     <td><%= result[i].ProductCategory.category_name %></td>
-                    <td><form action="">
+                    <td><form action="" method="POST">
                         <input type="hidden" id="id" name="id" value="<%= result[i].id%>">
+                        <input type="hidden" id="name" name="name" value="<%= result[i].name%>">
                         <input type="number" id="quantity" name="quantity" min="1" max="<%= result[i].stock%>">
                         <input type="submit" value="Add To Cart">
                       </form></td>

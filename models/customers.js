@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
+    hooks: {
+      beforeValidate: (customer, options) => {
+        customer.full_name= `${customer.first_name} ${customer.last_name}`
+      }
+    },
     sequelize
   })
 

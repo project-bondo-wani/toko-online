@@ -1,4 +1,7 @@
 const {Admins} =  require('../models')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 class Controller{
 
@@ -11,14 +14,24 @@ class Controller{
         const {username, password} =  req.body
         Admins.findOne({
             where: {
-                username,
-                password
+                username
             }
         })
         .then((result)=>{
             if(result){
-                req.session.isLogin = true
-                res.redirect('/admin')
+                bcrypt.compare(password, result.password, (err, isvalid)=>{
+                    if(err){
+                        res.send(err)
+                    }else{
+                        if(isvalid){
+                            req.session.isLogin = true
+                            req.session.Id = result.id
+                            res.redirect('/admin')
+                        }else{
+                            res.redirect('/admin/login')
+                        }
+                    }
+                })
             }else{
                 res.send('password/username salah')
             }
@@ -54,20 +67,38 @@ class Controller{
 
     static create(req, res){
         const {username, first_name, last_name, password} = req.body
-
-        const data = {
-            first_name,
-            last_name,
-            password,
-            username
-        }
-        
-        Admins.create(data)
-        .then((result)=>{
-            res.redirect('/admin')
+        // console.log(username)
+        Admins.findAll({
+            where: {
+                username
+            }
         })
-        .catch((err)=>{
-            res.send(err)
+        .then((result)=>{
+            if(result.length  > 0){
+                res.send('username sudah terpakai')
+            }
+            else{
+                bcrypt.genSalt(saltRounds, function(err, salt) {
+                    // console.log(salt)
+                    bcrypt.hash(password, salt, function(err, hash) {
+                        // Store hash in your password DB.
+                        const data = {
+                            first_name,
+                            last_name,
+                            password : hash,
+                            username
+                        }
+                        
+                        Admins.create(data)
+                        .then((result)=>{
+                            res.redirect('/admin/login')
+                        })
+                        .catch((err)=>{
+                            res.send(err)
+                        })
+                    });
+                });
+            }
         })
     }
 
@@ -116,7 +147,7 @@ class Controller{
             }
         })
         .then((result)=>{
-            res.redirect('/admin/home')
+            res.redirect('/admin')
         })
         .catch((err)=>{
             res.send(err)

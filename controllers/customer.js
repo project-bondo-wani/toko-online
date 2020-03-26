@@ -24,24 +24,25 @@ class CustomerController {
         res.render('login', {message})
     }
     static loginCheck (req, res) {
-        let status = false
-        const{email, password} = req.body
-        // console.log
+        const {email, password} =  req.body
         Customers.findOne({
             where: {
                 email,
                 password
             }
         })
-            .then(customer => {
-                if(customer) {
-                    res.send('suceeeeess')
-                } else {
-                    req.app.locals.message = 'you input wrong email or password'
-                    res.render('login')
-                }
-            })
-            .catch(err => res.send(err))
+        .then((result)=>{
+            if(result){
+                req.session.isLogin = true
+                res.redirect('/customer/product/customer')
+            }else{
+                req.app.locals.message = 'password/username salah'
+                res.redirect('/customer/login')
+            }
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
     }
 }
 

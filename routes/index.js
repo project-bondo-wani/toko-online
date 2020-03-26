@@ -1,9 +1,20 @@
 const router = require('express').Router()
 const admin = require('./admin.js')
+const customerRouter = require('./customer')
 
-const customer = require('./customer')
-
-router.use('/customer', customer)
+const customer = require('../controllers/customer')
+router.get('/customer/register',customer.register)
+router.post('/customer/register',customer.create)
+router.get('/customer/login', customer.login)
+router.post('/customer/login', customer.loginCheck)
+router.use('/customer', (req, res, next) => {
+    const {isLogin} = req.session
+    if(isLogin){
+        next()
+    } else {
+        res.redirect('/customer/login')
+    }
+}, customerRouter)
 
 const controller_admin = require('../controllers/controller_admin.js')
 //untuk login admin

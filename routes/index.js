@@ -1,11 +1,10 @@
 const router = require('express').Router()
 const admin = require('./admin.js')
-<<<<<<< HEAD
+
 const customer = require('./customer')
 
-router.use('/admin', admin)
 router.use('/customer', customer)
-=======
+
 const controller_admin = require('../controllers/controller_admin.js')
 
 //untuk login admin
@@ -19,6 +18,6 @@ router.use('/admin',(req, res, next)=>{
         res.redirect('/admin/login')
     }
 }, admin)
->>>>>>> 3aafd68e6711da459d6f80aa94186f4e9c2554c0
+
 
 module.exports = router

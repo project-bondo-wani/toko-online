@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Customer = require('../controllers/customer')
+// const Customer = require('../controllers/customer')
+const product =  require('../routes/product')
 
-router.get('/register',Customer.register)
-router.post('/register',Customer.create)
-router.get('/login', Customer.login)
-router.post('/login', Customer.loginCheck)
+router.use('/product', product)
 
 module.exports = router

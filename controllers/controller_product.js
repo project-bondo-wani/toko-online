@@ -73,11 +73,20 @@ class Controller{
             res.send(err)
         })
     }
+    static getAllCustomer(req, res){
+        Products.findAll({
+            order:[
+                ['ProductCategoryId', 'ASC']
+            ],
+            include:[ProductCategories]
+        })
+        .then((result)=>{
+            // res.send(result)
+            res.render('admin/product/customerShow', {result})
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
 }
-// <% for(let i in result) { %>
-//     <tr>
-//         <td><%= +i+1 %></td>
-//     </tr>
-// <% } %>
-
+}
 module.exports = Controller

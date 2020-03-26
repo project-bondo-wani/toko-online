@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const admin = require('./admin.js')
+const customerRouter = require('./customer')
 
 const customer = require('../controllers/customer')
 router.get('/customer/register',customer.register)
@@ -13,7 +14,7 @@ router.use('/customer', (req, res, next) => {
     } else {
         res.redirect('/customer/login')
     }
-})
+}, customerRouter)
 
 const controller_admin = require('../controllers/controller_admin.js')
 

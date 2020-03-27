@@ -11,6 +11,9 @@
             <div style="width: 50%;">
                 <%= user.email %>
             </div>
+            <div style="width: 50%;">
+                <a href="/customer/<%=user.id%>/edit">Edit Profile</a>
+            </div>
             <a href="/customer/order/<%= user.id %>/cart">Cart</a>
             <!-- Product -->
 

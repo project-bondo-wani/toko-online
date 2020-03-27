@@ -19,6 +19,7 @@ class Controller{
         })
         .then((result)=>{
             if(result){
+                console.log({result})
                 bcrypt.compare(password, result.password, (err, isvalid)=>{
                     if(err){
                         res.send(err)
@@ -28,6 +29,7 @@ class Controller{
                             req.session.Id = result.id
                             res.redirect('/admin')
                         }else{
+                            console.log('gagal')
                             res.redirect('/admin/login')
                         }
                     }

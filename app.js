@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT || 4000
+const port = process.env.PORT || 4000
 const router = require('./routes')
 const session = require('express-session')
 
@@ -14,6 +14,6 @@ app.use(session({
 }))
 app.use('/', router)
 
-app.listen(PORT, (req, res)=>{
-    console.log('listening port', PORT)
+app.listen(port, (req, res)=>{
+    console.log('listening port', port)
 })

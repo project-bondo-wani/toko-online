@@ -5,5 +5,12 @@
     "database": "toko-online",
     "host": "localhost",
     "dialect": "postgres"
+  },
+  "production": {
+    "username": "nepvxwerofpxbp",
+    "password": "0a39785970743fd595bd9e39667aa1c9299822c0bdf0e79e6a2187084fe5bd61",
+    "database": "d9grvgs1t1vigo-online",
+    "host": "ec2-34-206-252-187.compute-1.amazonaws.com",
+    "dialect": "postgres"
   }
 }
